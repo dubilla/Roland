@@ -37,6 +37,7 @@ gem 'pg'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -50,5 +51,8 @@ end
 group :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'pry-nav'
+  gem 'capybara'
+  gem 'capybara-rails'
+  gem 'poltergeist'
+  gem 'factory_girl'
 end
