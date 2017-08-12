@@ -53,7 +53,6 @@ group :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'capybara'
-  gem 'capybara-rails'
   gem 'poltergeist'
   gem 'factory_girl'
 end
