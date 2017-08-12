@@ -9,6 +9,7 @@ RSpec.feature "Groups", type: :feature do
     and_i_visit_the_groups_page
     i_can_see_a_list_of_groups
     i_can_create_a_group
+    then_i_will_see_the_group_listed
   end
 
   def as_a_user_i_login user
@@ -29,5 +30,9 @@ RSpec.feature "Groups", type: :feature do
     expect(page).to have_text 'Create Group'
     fill_in 'Name', with: 'Pool'
     click_button 'Create Group'
+  end
+
+  def then_i_will_see_the_group_listed
+    expect(page).to have_text 'Pool'
   end
 end

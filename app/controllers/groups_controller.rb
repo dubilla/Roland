@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   def index
-    @groups = []
+    @groups = Group.all
   end
 
   def new
@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params[:group])
+    @group = Group.new(group_params)
     if @group.save
       redirect_to groups_path
     else
