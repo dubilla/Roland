@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811220304) do
+ActiveRecord::Schema.define(version: 20170812174911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_tournaments", id: false, force: :cascade do |t|
+    t.integer "group_id",      null: false
+    t.integer "tournament_id", null: false
+  end
+
+  add_index "groups_tournaments", ["group_id", "tournament_id"], name: "index_groups_tournaments_on_group_id_and_tournament_id", using: :btree
+  add_index "groups_tournaments", ["tournament_id", "group_id"], name: "index_groups_tournaments_on_tournament_id_and_group_id", using: :btree
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
