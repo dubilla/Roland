@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "Groups", type: :feature do
-  let(:user) { create :user }
+  let(:user) { create :user, email: 'jason.day@golf.com' }
   let(:tournament) { create :tournament }
 
   scenario do
@@ -9,7 +9,7 @@ RSpec.feature "Groups", type: :feature do
     and_i_visit_the_groups_page
     i_can_see_a_list_of_groups
     i_can_create_a_group
-    then_i_will_see_the_group_listed
+    and_see_the_group_page
   end
 
   def as_a_user_i_login user
@@ -32,7 +32,8 @@ RSpec.feature "Groups", type: :feature do
     click_button 'Create Group'
   end
 
-  def then_i_will_see_the_group_listed
+  def and_see_the_group_page
     expect(page).to have_text 'Pool'
+    expect(page).to have_text 'jason.day@golf.com'
   end
 end

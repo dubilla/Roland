@@ -9,11 +9,16 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.users << current_user
     if @group.save
-      redirect_to groups_path
+      redirect_to @group
     else
       render 'new'
     end
+  end
+
+  def show
+    @group = Group.find(params[:id])
   end
 
   private
