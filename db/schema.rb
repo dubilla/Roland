@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813172027) do
+ActiveRecord::Schema.define(version: 20171210235712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,19 +26,19 @@ ActiveRecord::Schema.define(version: 20170813172027) do
   add_index "group_memberships", ["user_id", "group_id"], name: "index_group_memberships_on_user_id_and_group_id", using: :btree
   add_index "group_memberships", ["user_id"], name: "index_group_memberships_on_user_id", using: :btree
 
+  create_table "group_tournaments", force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "group_tournaments", ["group_id"], name: "index_group_tournaments_on_group_id", using: :btree
+  add_index "group_tournaments", ["user_id"], name: "index_group_tournaments_on_user_id", using: :btree
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "groups_tournaments", id: false, force: :cascade do |t|
-    t.integer "group_id",      null: false
-    t.integer "tournament_id", null: false
-  end
-
-  add_index "groups_tournaments", ["group_id", "tournament_id"], name: "index_groups_tournaments_on_group_id_and_tournament_id", using: :btree
-  add_index "groups_tournaments", ["tournament_id", "group_id"], name: "index_groups_tournaments_on_tournament_id_and_group_id", using: :btree
 
   create_table "tournaments", force: :cascade do |t|
     t.string   "name"
@@ -67,4 +67,5 @@ ActiveRecord::Schema.define(version: 20170813172027) do
 
   add_foreign_key "group_memberships", "groups"
   add_foreign_key "group_memberships", "users"
+  add_foreign_key "group_tournaments", "groups"
 end
