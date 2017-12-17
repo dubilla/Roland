@@ -54,6 +54,6 @@ group :test do
   gem 'pry-nav'
   gem 'capybara'
   gem 'poltergeist'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'capybara-screenshot'
 end

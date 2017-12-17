@@ -1,4 +1,4 @@
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-  FactoryGirl.find_definitions
+  config.include FactoryBot::Syntax::Methods
+  FactoryBot.find_definitions
 end
