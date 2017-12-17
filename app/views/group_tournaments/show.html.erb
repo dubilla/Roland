@@ -1,0 +1,11 @@
+<h2><%= @group_tournament.tournament_name %></h2>
+
+<%= link_to 'Create an entry', new_group_tournament_entry_path(@group_tournament) %>
+
+<ul>
+  <%= @group_tournament.entries.each do |entry| %>
+    <li>
+      <%= entry.name %>
+    </li>
+  <% end %>
+</ul>

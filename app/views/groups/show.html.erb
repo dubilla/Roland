@@ -1,6 +1,14 @@
 <h2><%= @group.name %></h2>
 
 <ul>
+  <%= @group.tournaments.each do |tournament| %>
+    <li>
+      <%= tournament.name %>
+    </li>
+  <% end %>
+</ul>
+
+<ul>
   <%= @group.users.each do |user| %>
     <li>
       <%= user.email %>

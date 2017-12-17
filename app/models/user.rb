@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :group_membership
   has_many :groups, through: :group_memberships
+  has_many :entries
 end
