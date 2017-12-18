@@ -2,10 +2,16 @@
 
 <%= link_to 'Create an entry', new_group_tournament_entry_path(@group_tournament) %>
 
-<ul>
+<table>
   <%= @group_tournament.entries.each do |entry| %>
-    <li>
-      <%= entry.name %>
-    </li>
+    <tr>
+      <td>
+        <%= entry.name %>
+      </td>
+      <td>
+        <% if entry.user == current_user %>
+          <%= link_to 'Delete', group_tournament_entry_path(entry.group_tournament, entry), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+    </tr>
   <% end %>
 </ul>

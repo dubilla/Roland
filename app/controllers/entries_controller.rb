@@ -14,6 +14,13 @@ class EntriesController < ApplicationController
     end
   end
 
+  def destroy
+    entry = Entry.find(params[:id])
+    entry.destroy
+    flash[:success] = "Entry deleted"
+    redirect_to entry.group_tournament
+  end
+
   private
 
   def entry_params
