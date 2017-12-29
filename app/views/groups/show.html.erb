@@ -1,5 +1,7 @@
 <h2><%= @group.name %></h2>
 
+<%= link_to "Join Group", new_group_group_membership_path(@group) %>
+
 <div>
   <h3>Tournaments</h3>
   <ul>
@@ -11,13 +13,16 @@
   </ul>
 </div>
 
-<ul>
-  <%= @group.users.each do |user| %>
-    <li>
-      <%= user.email %>
-    </li>
-  <% end %>
-</ul>
+<div>
+  <h3>Members</h3>
+  <ul>
+    <%= @group.users.each do |user| %>
+      <li>
+        <%= user.email %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <div>
   <h3>Available Tournaments</h3>

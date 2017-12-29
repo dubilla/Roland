@@ -4,12 +4,50 @@ RSpec.feature "Groups", type: :feature do
   let(:user) { create :user, email: 'jason.day@golf.com' }
   let(:tournament) { create :tournament }
 
-  scenario do
-    as_a_user_i_login user
-    and_i_visit_the_groups_page
-    i_can_see_a_list_of_groups
-    i_can_create_a_group
-    and_see_the_group_page
+  context "there are no groups" do
+    scenario "creating a group" do
+      as_a_user_i_login user
+      and_i_visit_the_groups_page
+      i_see_there_are_no_groups
+      i_can_create_a_group
+      and_see_the_group_page
+    end
+
+    def i_see_there_are_no_groups
+      expect(page).to have_text 'Groups'
+      expect(page).to have_text 'There are no groups'
+    end
+
+    def i_can_create_a_group
+      click_link 'Create a group'
+      expect(page).to have_text 'Create Group'
+      fill_in 'Name', with: 'Pool'
+      click_button 'Create Group'
+    end
+  end
+
+  context "there are groups" do
+    let(:group) { create :group, name: "Open Group" }
+
+    scenario "joining a group" do
+      as_a_user_i_login user
+      and_i_visit_a_group_page
+      i_can_join_a_group
+    end
+
+    def and_i_visit_a_group_page
+      visit group_path group
+    end
+
+    def i_can_join_a_group
+      click_link "Join Group"
+      expect(page).to have_text "Join Open Group"
+      click_button "Join"
+    end
+
+    def group_memberships
+      find("div", text: "Members")
+    end
   end
 
   def as_a_user_i_login user
@@ -18,18 +56,6 @@ RSpec.feature "Groups", type: :feature do
 
   def and_i_visit_the_groups_page
     visit groups_path
-  end
-
-  def i_can_see_a_list_of_groups
-    expect(page).to have_text 'Groups'
-    expect(page).to have_text 'There are no groups'
-  end
-
-  def i_can_create_a_group
-    click_link 'Create a group'
-    expect(page).to have_text 'Create Group'
-    fill_in 'Name', with: 'Pool'
-    click_button 'Create Group'
   end
 
   def and_see_the_group_page
