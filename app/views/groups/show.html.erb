@@ -1,17 +1,15 @@
 <h2><%= @group.name %></h2>
 
-<% Tournament.unstarted.each do |tournament| %>
-  <span><%= tournament.name %> - <% tournament.start_date %></span>
-  <%= link_to "Add tournament to group", group_tournaments_path(group_id: @group.id, tournament_id: tournament.id), method: :post %>
-<% end %>
-
-<ul>
-  <%= @group.tournaments.each do |tournament| %>
-    <li>
-      <%= tournament.name %>
-    </li>
-  <% end %>
-</ul>
+<div>
+  <h3>Tournaments</h3>
+  <ul>
+    <%= @group.tournaments.each do |tournament| %>
+      <li>
+        <%= tournament.name %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <ul>
   <%= @group.users.each do |user| %>
@@ -20,3 +18,11 @@
     </li>
   <% end %>
 </ul>
+
+<div>
+  <h3>Available Tournaments</h3>
+  <% Tournament.unstarted.each do |tournament| %>
+    <span><%= tournament.name %> - <% tournament.start_date %></span>
+    <%= link_to "Add tournament to group", group_tournaments_path(group_id: @group.id, tournament_id: tournament.id), method: :post %>
+  <% end %>
+</div>

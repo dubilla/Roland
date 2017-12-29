@@ -8,7 +8,7 @@ RSpec.feature "Group Tournaments", type: :feature do
   scenario do
     as_a_user_i_login user
     and_i_visit_a_group_page
-    i_can_see_an_upcoming_tournament
+    i_can_create_an_upcoming_tournament
   end
 
   def as_a_user_i_login user
@@ -19,8 +19,23 @@ RSpec.feature "Group Tournaments", type: :feature do
     visit group_path group
   end
 
-  def i_can_see_an_upcoming_tournament
-    expect(page).to have_text 'The French Open'
-    click_link 'Add tournament to group'
+  def i_can_create_an_upcoming_tournament
+    within available_tournaments_card do
+      expect(page).to have_text "The French Open"
+      click_link 'Add tournament to group'
+    end
+    within tournaments_card do
+      expect(page).to have_text "The French Open"
+    end
+  end
+
+  private
+
+  def available_tournaments_card
+    find("div", text: "Available Tournaments")
+  end
+
+  def tournaments_card
+    find("div", text: "Tournaments", match: :prefer_exact)
   end
 end
