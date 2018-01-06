@@ -19,4 +19,6 @@ FactoryBot.define do
   factory :slot
 
   factory :pick
+
+  factory :opponent
 end

@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resources :group_tournaments, only: [:show, :create] do
     resources :entries, only: [:new, :create, :show, :destroy]
   end
-  resources :picks, only: [:edit]
+  resources :entries, only: [:new, :create, :show, :destroy]
+  resources :picks, only: [:edit, :update]
 
   # Example resource route with options:
   #   resources :products do

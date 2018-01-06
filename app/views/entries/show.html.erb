@@ -2,7 +2,14 @@
 
 <div>
   <h4>Bracket</h4>
-  <% @entry.picks.each do |p, i| %>
-    Pick <%= i %> - <%= link_to "Make Pick", edit_pick_path(p) %>
+  <% @entry.picks.each_with_index do |p| %>
+    <p>
+      Pick <%= p.slot_name %> - <%= link_to "Make Pick", edit_pick_path(p) %>
+    </p>
+    <% if p.opponent %>
+      <p>
+        Pick: <%= p.opponent.name %>
+      </p>
+    <% end %>
   <% end %>
 </div>
