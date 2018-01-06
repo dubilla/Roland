@@ -13,4 +13,10 @@ FactoryBot.define do
   end
 
   factory :group_tournament
+
+  factory :entry
+
+  factory :slot
+
+  factory :pick
 end

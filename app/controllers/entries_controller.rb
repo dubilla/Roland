@@ -14,6 +14,10 @@ class EntriesController < ApplicationController
     end
   end
 
+  def show
+    @entry = Entry.find(params[:id])
+  end
+
   def destroy
     entry = Entry.find(params[:id])
     entry.destroy

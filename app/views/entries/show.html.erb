@@ -1,0 +1,8 @@
+<h2><%= @entry.name %> Entry</h2>
+
+<div>
+  <h4>Bracket</h4>
+  <% @entry.picks.each do |p, i| %>
+    Pick <%= i %> - <%= link_to "Make Pick", edit_pick_path(p) %>
+  <% end %>
+</div>
