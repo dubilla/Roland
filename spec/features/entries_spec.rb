@@ -4,6 +4,7 @@ RSpec.feature "Entries", type: :feature do
   let(:user) { create :user, email: 'jason.day@golf.com' }
   let(:group) { create :group, name: 'Pool' }
   let(:tournament) { create :tournament, name: 'Denver Open' }
+  let!(:slot) { create :slot, tournament: tournament }
   let(:group_tournament) { create :group_tournament, group: group, tournament: tournament }
 
   context "with no existing entries" do
