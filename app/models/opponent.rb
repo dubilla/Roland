@@ -1,4 +1,4 @@
 class Opponent < ActiveRecord::Base
-  belongs_to :tournament
+  belongs_to :matchup
   has_many :picks
 end

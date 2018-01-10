@@ -1,15 +1,13 @@
 <h2><%= @entry.name %> Entry</h2>
 
-<div>
-  <h4>Bracket</h4>
-  <% @entry.picks.each_with_index do |p| %>
-    <p>
-      Pick <%= p.slot_name %> - <%= link_to "Make Pick", edit_pick_path(p) %>
-    </p>
-    <% if p.opponent %>
-      <p>
-        Pick: <%= p.opponent.name %>
-      </p>
+<h4>Bracket</h4>
+<% @entry.picks.each_with_index do |p| %>
+  <div>
+    Pick <%= p.slot_name %> - <%= link_to "Make Pick", edit_pick_path(p) %>
+</div>
+<% if p.opponent %>
+  <div>
+    Pick: <%= p.opponent.name %>
+</div>
     <% end %>
   <% end %>
-</div>

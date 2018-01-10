@@ -21,4 +21,6 @@ FactoryBot.define do
   factory :pick
 
   factory :opponent
+
+  factory :matchup
 end

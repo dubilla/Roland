@@ -1,7 +1,7 @@
 class PicksController < ApplicationController
   def edit
     @pick = Pick.find(params[:id])
-    @opponents = @pick.slot.tournament.opponents
+    @opponents = Slot.includes(matchup: :opponents).find(@pick.slot.subtree_ids).map(&:matchup).compact.flat_map(&:opponents)
   end
 
   def update

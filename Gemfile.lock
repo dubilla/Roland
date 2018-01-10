@@ -38,6 +38,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ancestry (3.0.1)
+      activerecord (>= 3.2.0)
     arel (6.0.4)
     bcrypt (3.1.11)
     binding_of_caller (0.7.3)
@@ -221,6 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry
   byebug
   capybara
   capybara-screenshot
