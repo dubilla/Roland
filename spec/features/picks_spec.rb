@@ -41,6 +41,7 @@ RSpec.feature "Picks", type: :feature do
     and_i_only_see_the_possible_opponents
     make_a_pick
     and_see_the_pick_on_the_entry_page
+    and_i_see_the_preceding_picks
   end
 
   def as_a_user_i_login user
@@ -71,6 +72,14 @@ RSpec.feature "Picks", type: :feature do
 
   def and_see_the_pick_on_the_entry_page
     expect(page).to have_text "My First Entry"
-    expect(page).to have_text "Pick: Clemson"
+    within "section", text: "Pick Slot 5" do
+      expect(page).to have_text "Pick: Clemson"
+    end
+  end
+
+  def and_i_see_the_preceding_picks
+    within "section", text: "Pick Slot 1" do
+      expect(page).to have_text "Pick: Clemson"
+    end
   end
 end
