@@ -11,4 +11,6 @@
 <% else %>
   <span>There are no groups</span>
 <% end %>
-<%= link_to 'Create a group', new_group_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Create a group', new_group_path %>
+<% end %>

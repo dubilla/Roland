@@ -4,6 +4,29 @@ RSpec.feature "Groups", type: :feature do
   let(:user) { create :user, email: 'jason.day@golf.com' }
   let(:tournament) { create :tournament }
 
+  context "i am logged out" do
+    let!(:group) { create :group, name: "Open Group" }
+
+    scenario "viewing groups" do
+      as_a_guest
+      and_i_visit_the_groups_page
+      i_can_see_the_groups
+      and_i_cannot_create_a_group
+    end
+
+    def as_a_guest
+      # no-op
+    end
+
+    def i_can_see_the_groups
+      expect(page).to have_text "Open Group"
+    end
+
+    def and_i_cannot_create_a_group
+      expect(page).to have_no_link "Create a group"
+    end
+  end
+
   context "there are no groups" do
     scenario "creating a group" do
       as_a_user_i_login user
