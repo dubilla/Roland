@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110030126) do
+ActiveRecord::Schema.define(version: 20180112042206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,9 +61,11 @@ ActiveRecord::Schema.define(version: 20180110030126) do
   create_table "opponents", force: :cascade do |t|
     t.string  "name"
     t.integer "matchup_id", null: false
+    t.integer "player_id",  null: false
   end
 
   add_index "opponents", ["matchup_id"], name: "index_opponents_on_matchup_id", using: :btree
+  add_index "opponents", ["player_id"], name: "index_opponents_on_player_id", using: :btree
 
   create_table "picks", force: :cascade do |t|
     t.integer  "entry_id"
@@ -75,6 +77,14 @@ ActiveRecord::Schema.define(version: 20180110030126) do
 
   add_index "picks", ["opponent_id"], name: "index_picks_on_opponent_id", using: :btree
   add_index "picks", ["slot_id"], name: "index_picks_on_slot_id", using: :btree
+
+  create_table "players", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "external_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "slots", force: :cascade do |t|
     t.integer  "tournament_id"
@@ -118,6 +128,7 @@ ActiveRecord::Schema.define(version: 20180110030126) do
   add_foreign_key "group_tournaments", "groups"
   add_foreign_key "group_tournaments", "tournaments"
   add_foreign_key "opponents", "matchups"
+  add_foreign_key "opponents", "players"
   add_foreign_key "picks", "opponents"
   add_foreign_key "picks", "slots"
 end
