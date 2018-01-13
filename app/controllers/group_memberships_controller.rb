@@ -5,7 +5,6 @@ class GroupMembershipsController < ApplicationController
   end
 
   def create
-    binding.pry
     @group_membership = GroupMembership.new(membership_params)
     if @group_membership.save
       redirect_to @group_membership.group
