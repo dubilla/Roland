@@ -14,6 +14,7 @@ RSpec.feature "Entries", type: :feature do
       i_can_create_an_entry
       get_redirected_to_the_group_tournament_page
       and_see_my_entry_listed
+      and_i_cannot_create_another_entry
       i_can_delete_my_entry
       and_i_no_longer_see_it
     end
@@ -31,6 +32,10 @@ RSpec.feature "Entries", type: :feature do
 
     def and_see_my_entry_listed
       expect(page).to have_text 'my entry'
+    end
+
+    def and_i_cannot_create_another_entry
+      expect(page).to have_no_link "Create an entry"
     end
 
     def i_can_delete_my_entry

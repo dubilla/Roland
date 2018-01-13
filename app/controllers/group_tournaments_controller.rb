@@ -6,7 +6,7 @@ class GroupTournamentsController < ApplicationController
   end
 
   def show
-    @group_tournament = GroupTournament.find(params[:id])
+    @group_tournament = GroupTournament.includes(:entries).find(params[:id])
   end
 
   private
