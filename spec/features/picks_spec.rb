@@ -3,22 +3,22 @@ require "rails_helper"
 RSpec.feature "Picks", type: :feature do
   let(:user) { create :user }
   let(:tournament) { create :tournament }
-  let(:player1) { create :player }
-  let(:player2) { create :player }
-  let(:player3) { create :player }
-  let(:player4) { create :player }
-  let(:player5) { create :player }
-  let(:player6) { create :player }
-  let(:player7) { create :player }
-  let(:player8) { create :player }
-  let!(:opponent1) { create :opponent, tournament: tournament, name: "Clemson", player: player1 }
-  let!(:opponent2) { create :opponent, tournament: tournament, name: "Alabama", player: player2 }
-  let!(:opponent3) { create :opponent, tournament: tournament, name: "Georgia", player: player3 }
-  let!(:opponent4) { create :opponent, tournament: tournament, name: "Oklahoma", player: player4 }
-  let!(:opponent5) { create :opponent, tournament: tournament, name: "Ohio State", player: player5 }
-  let!(:opponent6) { create :opponent, tournament: tournament, name: "USC", player: player6 }
-  let!(:opponent7) { create :opponent, tournament: tournament, name: "Auburn", player: player7 }
-  let!(:opponent8) { create :opponent, tournament: tournament, name: "UCF", player: player8 }
+  let(:player1) { create :player, first_name: "Clemson" }
+  let(:player2) { create :player, first_name: "Alabama" }
+  let(:player3) { create :player, first_name: "Georgia" }
+  let(:player4) { create :player, first_name: "Oklahaoma" }
+  let(:player5) { create :player, first_name: "Ohio State" }
+  let(:player6) { create :player, first_name: "USC" }
+  let(:player7) { create :player, first_name: "Auburn" }
+  let(:player8) { create :player, first_name: "UCF" }
+  let!(:opponent1) { create :opponent, tournament: tournament, player: player1 }
+  let!(:opponent2) { create :opponent, tournament: tournament, player: player2 }
+  let!(:opponent3) { create :opponent, tournament: tournament, player: player3 }
+  let!(:opponent4) { create :opponent, tournament: tournament, player: player4 }
+  let!(:opponent5) { create :opponent, tournament: tournament, player: player5 }
+  let!(:opponent6) { create :opponent, tournament: tournament, player: player6 }
+  let!(:opponent7) { create :opponent, tournament: tournament, player: player7 }
+  let!(:opponent8) { create :opponent, tournament: tournament, player: player8 }
   let!(:slot_round3) { create :slot, tournament: tournament, name: "Slot 7" }
   let!(:slot_round2_a) { create :slot, tournament: tournament, name: "Slot 5", parent: slot_round3 }
   let!(:slot_round2_b) { create :slot, tournament: tournament, name: "Slot 6", parent: slot_round3 }

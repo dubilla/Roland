@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114032954) do
+ActiveRecord::Schema.define(version: 20180114170504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20180114032954) do
   add_index "matchups", ["slot_id"], name: "index_matchups_on_slot_id", using: :btree
 
   create_table "opponents", force: :cascade do |t|
-    t.string  "name"
     t.integer "player_id",     null: false
     t.integer "tournament_id"
   end
