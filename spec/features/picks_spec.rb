@@ -3,14 +3,22 @@ require "rails_helper"
 RSpec.feature "Picks", type: :feature do
   let(:user) { create :user }
   let(:tournament) { create :tournament }
-  let!(:opponent1) { create :opponent, matchup: matchup1, name: "Clemson" }
-  let!(:opponent2) { create :opponent, matchup: matchup1, name: "Alabama" }
-  let!(:opponent3) { create :opponent, matchup: matchup2, name: "Georgia" }
-  let!(:opponent4) { create :opponent, matchup: matchup2, name: "Oklahoma" }
-  let!(:opponent5) { create :opponent, matchup: matchup3, name: "Ohio State" }
-  let!(:opponent6) { create :opponent, matchup: matchup3, name: "USC" }
-  let!(:opponent7) { create :opponent, matchup: matchup4, name: "Auburn" }
-  let!(:opponent8) { create :opponent, matchup: matchup4, name: "UCF" }
+  let(:player1) { create :player }
+  let(:player2) { create :player }
+  let(:player3) { create :player }
+  let(:player4) { create :player }
+  let(:player5) { create :player }
+  let(:player6) { create :player }
+  let(:player7) { create :player }
+  let(:player8) { create :player }
+  let!(:opponent1) { create :opponent, tournament: tournament, name: "Clemson", player: player1 }
+  let!(:opponent2) { create :opponent, tournament: tournament, name: "Alabama", player: player2 }
+  let!(:opponent3) { create :opponent, tournament: tournament, name: "Georgia", player: player3 }
+  let!(:opponent4) { create :opponent, tournament: tournament, name: "Oklahoma", player: player4 }
+  let!(:opponent5) { create :opponent, tournament: tournament, name: "Ohio State", player: player5 }
+  let!(:opponent6) { create :opponent, tournament: tournament, name: "USC", player: player6 }
+  let!(:opponent7) { create :opponent, tournament: tournament, name: "Auburn", player: player7 }
+  let!(:opponent8) { create :opponent, tournament: tournament, name: "UCF", player: player8 }
   let!(:slot_round3) { create :slot, tournament: tournament, name: "Slot 7" }
   let!(:slot_round2_a) { create :slot, tournament: tournament, name: "Slot 5", parent: slot_round3 }
   let!(:slot_round2_b) { create :slot, tournament: tournament, name: "Slot 6", parent: slot_round3 }
@@ -22,6 +30,14 @@ RSpec.feature "Picks", type: :feature do
   let(:matchup2) { create :matchup, slot: slot_round1_b }
   let(:matchup3) { create :matchup, slot: slot_round1_c }
   let(:matchup4) { create :matchup, slot: slot_round1_d }
+  let!(:matchup_opponent1) { create :matchup_opponent, matchup: matchup1, opponent: opponent1 }
+  let!(:matchup_opponent2) { create :matchup_opponent, matchup: matchup1, opponent: opponent2 }
+  let!(:matchup_opponent3) { create :matchup_opponent, matchup: matchup2, opponent: opponent3 }
+  let!(:matchup_opponent4) { create :matchup_opponent, matchup: matchup2, opponent: opponent4 }
+  let!(:matchup_opponent5) { create :matchup_opponent, matchup: matchup3, opponent: opponent5 }
+  let!(:matchup_opponent6) { create :matchup_opponent, matchup: matchup3, opponent: opponent6 }
+  let!(:matchup_opponent7) { create :matchup_opponent, matchup: matchup4, opponent: opponent7 }
+  let!(:matchup_opponent8) { create :matchup_opponent, matchup: matchup4, opponent: opponent8 }
   let(:group) { create :group }
   let(:group_tournament) { create :group_tournament, group: group, tournament: tournament }
   let(:entry) { create :entry, user: user, group_tournament: group_tournament, name: "My First" }
