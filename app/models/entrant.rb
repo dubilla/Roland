@@ -6,4 +6,5 @@ class Entrant < ActiveRecord::Base
   has_many :matchups, through: :opponents
 
   delegate :name, to: :player, prefix: true
+  delegate :name, to: :tournament, prefix: true
 end

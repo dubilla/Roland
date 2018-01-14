@@ -1,0 +1,13 @@
+<h2>Entrants</h2>
+
+<%= link_to "Create an entrant", new_entrant_path %>
+
+<ul>
+  <% @entrants.each do |e| %>
+    <li>
+      <%= e.player_name %>
+      </br>
+      <%= e.tournament_name %>
+    </li>
+  <% end %>
+</ul>

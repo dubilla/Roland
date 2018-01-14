@@ -1,0 +1,7 @@
+<h2>Create Entrant </h2>
+
+<%= form_for @entrant do |f| %>
+  <%= f.collection_select :tournament_id, @tournaments, :id, :name, prompt: "Select Tournament" %>
+  <%= f.collection_select :player_id, @players, :id, :name, prompt: "Select Player" %>
+  <%= f.submit "Create Entrant" %>
+<% end %>
