@@ -9,6 +9,7 @@ RSpec.feature "Group Tournaments", type: :feature do
     as_a_user_i_login user
     and_i_visit_a_group_page
     i_can_create_an_upcoming_tournament
+    and_i_can_visit_that_group_tournament_page
   end
 
   def as_a_user_i_login user
@@ -27,6 +28,12 @@ RSpec.feature "Group Tournaments", type: :feature do
     within tournaments_card do
       expect(page).to have_text "The French Open"
     end
+  end
+
+  def and_i_can_visit_that_group_tournament_page
+    click_link "The French Open"
+    expect(page).to have_text "The French Open"
+    expect(page).to have_text "Entries"
   end
 
   private

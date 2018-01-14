@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
+    @group = Group.includes(:group_tournaments).find(params[:id])
   end
 
   private

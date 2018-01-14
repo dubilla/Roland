@@ -5,9 +5,9 @@
 <div>
   <h3>Tournaments</h3>
   <ul>
-    <%= @group.tournaments.each do |tournament| %>
+    <%= @group.group_tournaments.each do |gt| %>
       <li>
-        <%= tournament.name %>
+        <%= link_to gt.tournament_name, group_tournament_path(gt)  %>
       </li>
     <% end %>
   </ul>

@@ -4,6 +4,7 @@
   <%= link_to 'Create an entry', new_group_tournament_entry_path(@group_tournament) %>
 <% end %>
 
+<h4>Entries</h4>
 <table>
   <%= @group_tournament.entries.each do |entry| %>
     <tr>
