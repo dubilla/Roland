@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find(params[:id])
+    @entry = Entry.includes(picks: :slot).find(params[:id])
   end
 
   def destroy
