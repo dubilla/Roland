@@ -3,6 +3,15 @@
 <h4>Bracket</h4>
 <% @entry.picks.each_with_index do |p| %>
   <section>
+    <% if p.slot.matchup && p.slot.matchup.opponents.length == 2 %>
+      <ul>
+        <% p.slot.matchup.opponents.each do |o| %>
+          <li>
+            <%= o.player_name %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
     <div>
       Pick <%= p.slot_name %> - <%= link_to "Make Pick", edit_pick_path(p) %>
     </div>

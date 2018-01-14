@@ -4,4 +4,6 @@ class Opponent < ActiveRecord::Base
   has_many :picks
   has_many :matchup_opponents
   has_many :matchups, through: :matchup_opponents
+
+  delegate :name, to: :player, prefix: true
 end
