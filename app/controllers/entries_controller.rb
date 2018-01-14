@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.includes(picks: { slot: { matchup: :opponents } } ).find(params[:id])
+    @entry = Entry.includes(picks: { slot: { matchup: { matchup_opponents: :opponent } } } ).find(params[:id])
   end
 
   def destroy
