@@ -11,14 +11,14 @@ RSpec.feature "Picks", type: :feature do
   let(:player6) { create :player, first_name: "USC" }
   let(:player7) { create :player, first_name: "Auburn" }
   let(:player8) { create :player, first_name: "UCF" }
-  let!(:opponent1) { create :opponent, tournament: tournament, player: player1 }
-  let!(:opponent2) { create :opponent, tournament: tournament, player: player2 }
-  let!(:opponent3) { create :opponent, tournament: tournament, player: player3 }
-  let!(:opponent4) { create :opponent, tournament: tournament, player: player4 }
-  let!(:opponent5) { create :opponent, tournament: tournament, player: player5 }
-  let!(:opponent6) { create :opponent, tournament: tournament, player: player6 }
-  let!(:opponent7) { create :opponent, tournament: tournament, player: player7 }
-  let!(:opponent8) { create :opponent, tournament: tournament, player: player8 }
+  let!(:entrant1) { create :entrant, tournament: tournament, player: player1 }
+  let!(:entrant2) { create :entrant, tournament: tournament, player: player2 }
+  let!(:entrant3) { create :entrant, tournament: tournament, player: player3 }
+  let!(:entrant4) { create :entrant, tournament: tournament, player: player4 }
+  let!(:entrant5) { create :entrant, tournament: tournament, player: player5 }
+  let!(:entrant6) { create :entrant, tournament: tournament, player: player6 }
+  let!(:entrant7) { create :entrant, tournament: tournament, player: player7 }
+  let!(:entrant8) { create :entrant, tournament: tournament, player: player8 }
   let!(:slot_round3) { create :slot, tournament: tournament, name: "Slot 7" }
   let!(:slot_round2_a) { create :slot, tournament: tournament, name: "Slot 5", parent: slot_round3 }
   let!(:slot_round2_b) { create :slot, tournament: tournament, name: "Slot 6", parent: slot_round3 }
@@ -30,14 +30,14 @@ RSpec.feature "Picks", type: :feature do
   let(:matchup2) { create :matchup, slot: slot_round1_b }
   let(:matchup3) { create :matchup, slot: slot_round1_c }
   let(:matchup4) { create :matchup, slot: slot_round1_d }
-  let!(:matchup_opponent1) { create :matchup_opponent, matchup: matchup1, opponent: opponent1 }
-  let!(:matchup_opponent2) { create :matchup_opponent, matchup: matchup1, opponent: opponent2 }
-  let!(:matchup_opponent3) { create :matchup_opponent, matchup: matchup2, opponent: opponent3 }
-  let!(:matchup_opponent4) { create :matchup_opponent, matchup: matchup2, opponent: opponent4 }
-  let!(:matchup_opponent5) { create :matchup_opponent, matchup: matchup3, opponent: opponent5 }
-  let!(:matchup_opponent6) { create :matchup_opponent, matchup: matchup3, opponent: opponent6 }
-  let!(:matchup_opponent7) { create :matchup_opponent, matchup: matchup4, opponent: opponent7 }
-  let!(:matchup_opponent8) { create :matchup_opponent, matchup: matchup4, opponent: opponent8 }
+  let!(:opponent1) { create :opponent, matchup: matchup1, entrant: entrant1 }
+  let!(:opponent2) { create :opponent, matchup: matchup1, entrant: entrant2 }
+  let!(:opponent3) { create :opponent, matchup: matchup2, entrant: entrant3 }
+  let!(:opponent4) { create :opponent, matchup: matchup2, entrant: entrant4 }
+  let!(:opponent5) { create :opponent, matchup: matchup3, entrant: entrant5 }
+  let!(:opponent6) { create :opponent, matchup: matchup3, entrant: entrant6 }
+  let!(:opponent7) { create :opponent, matchup: matchup4, entrant: entrant7 }
+  let!(:opponent8) { create :opponent, matchup: matchup4, entrant: entrant8 }
   let(:group) { create :group }
   let(:group_tournament) { create :group_tournament, group: group, tournament: tournament }
   let(:entry) { create :entry, user: user, group_tournament: group_tournament, name: "My First" }

@@ -7,7 +7,7 @@
       <ul>
         <% p.slot.matchup.opponents.each do |o| %>
           <li>
-            <%= o.player_name %>
+            <%= o.entrant.player_name %>
           </li>
         <% end %>
       </ul>
@@ -15,9 +15,9 @@
     <div>
       Pick <%= p.slot_name %> - <%= link_to "Make Pick", edit_pick_path(p) %>
     </div>
-    <% if p.opponent %>
+    <% if p.entrant %>
       <div>
-        Pick: <%= p.opponent.player_name %>
+        Pick: <%= p.entrant.player_name %>
       </div>
     <% end %>
   </section>

@@ -1,7 +1,7 @@
 class PicksController < ApplicationController
   def edit
     @pick = Pick.find(params[:id])
-    @opponents = Slot.includes(matchup: :opponents).find(@pick.slot.subtree_ids).map(&:matchup).compact.flat_map(&:opponents)
+    @entrants = Slot.includes(matchup: :opponents).find(@pick.slot.subtree_ids).map(&:matchup).compact.flat_map(&:entrants)
   end
 
   def update
@@ -17,7 +17,7 @@ class PicksController < ApplicationController
   private
 
   def pick_params
-    params.require(:pick).permit(:opponent_id)
+    params.require(:pick).permit(:entrant_id)
   end
 
   def save_picks
@@ -37,6 +37,6 @@ class PicksController < ApplicationController
   end
 
   def root_slot
-    Slot.joins(:tournament).joins(matchup: :opponents).uniq.where("opponents.id = ?", pick_params[:opponent_id]).first
+    Slot.joins(:tournament).joins(matchup: :entrants).uniq.where("entrants.id = ?", pick_params[:entrant_id]).first
   end
 end

@@ -26,11 +26,11 @@ FactoryBot.define do
 
   factory :pick
 
-  factory :opponent
+  factory :entrant
 
   factory :matchup
 
-  factory :matchup_opponent
+  factory :opponent
 
   factory :player do
     sequence(:external_id)
