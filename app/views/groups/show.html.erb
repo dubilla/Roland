@@ -5,7 +5,7 @@
 <div>
   <h3>Tournaments</h3>
   <ul>
-    <%= @group.group_tournaments.each do |gt| %>
+    <% @group.group_tournaments.each do |gt| %>
       <li>
         <%= link_to gt.tournament_name, group_tournament_path(gt)  %>
       </li>
@@ -16,7 +16,7 @@
 <div>
   <h3>Members</h3>
   <ul>
-    <%= @group.users.each do |user| %>
+    <% @group.users.each do |user| %>
       <li>
         <%= user.email %>
       </li>
