@@ -1,0 +1,7 @@
+<h2>Create Opponent</h2>
+
+<%= form_for @opponent do |f| %>
+  <%= f.collection_select :matchup_id, @matchups, :id, :slot_name, prompt: "Select Matchup" %>
+  <%= f.collection_select :entrant_id, @entrants, :id, :player_name, prompt: "Select Entrant" %>
+  <%= f.submit "Create Opponent" %>
+<% end %>

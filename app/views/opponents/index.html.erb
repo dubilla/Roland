@@ -1,0 +1,13 @@
+<h2>Opponent</h2>
+
+<%= link_to "Create an opponent", new_opponent_path %>
+
+<ul>
+  <% @opponents.each do |o| %>
+    <li>
+      <%= o.matchup.slot_name %>
+      </br>
+      <%= o.entrant.player_name %>
+    </li>
+  <% end %>
+</ul>

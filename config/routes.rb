@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :entries, only: [:new, :create, :show, :destroy]
   resources :picks, only: [:edit, :update]
   resources :entrants, only: [:new, :create, :index]
+  resources :opponents, only: [:new, :create, :index]
 
   # Example resource route with options:
   #   resources :products do
