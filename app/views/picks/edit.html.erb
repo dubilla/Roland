@@ -2,6 +2,6 @@
 
 <%= form_for @pick do |f| %>
   <%= f.label :opponent_id, "Winner" %>
-  <%= f.collection_select :opponent_id, @opponents, :id, :name, prompt: "Select Winner" %>
+  <%= f.collection_select :opponent_id, @opponents, :id, :player_name, prompt: "Select Winner" %>
   <%= f.submit "Make Pick" %>
 <% end %>

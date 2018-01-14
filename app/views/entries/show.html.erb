@@ -1,7 +1,7 @@
 <h2><%= @entry.name %> Entry</h2>
 
 <h4>Bracket</h4>
-<% @entry.picks.each_with_index do |p| %>
+<% @entry.picks.sort_by(&:id).each_with_index do |p| %>
   <section>
     <% if p.slot.matchup && p.slot.matchup.opponents.length == 2 %>
       <ul>
