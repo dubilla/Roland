@@ -4,6 +4,12 @@ FactoryBot.define do
     password 'asdfjkl'
   end
 
+  factory :admin, class: User do
+    admin true
+    email 'admin@test.com'
+    password 'asdfjkl'
+  end
+
   factory :group do
     name 'Group Name'
   end

@@ -24,10 +24,12 @@
   </ul>
 </div>
 
-<div>
-  <h3>Available Tournaments</h3>
-  <% Tournament.unstarted.each do |tournament| %>
-    <span><%= tournament.name %> - <% tournament.start_date %></span>
-    <%= link_to "Add tournament to group", group_tournaments_path(group_id: @group.id, tournament_id: tournament.id), method: :post %>
-  <% end %>
-</div>
+<% if user_signed_in? && current_user.admin? %>
+  <div>
+    <h3>Available Tournaments</h3>
+    <% Tournament.unstarted.each do |tournament| %>
+      <span><%= tournament.name %> - <% tournament.start_date %></span>
+      <%= link_to "Add tournament to group", group_tournaments_path(group_id: @group.id, tournament_id: tournament.id), method: :post %>
+    <% end %>
+  </div>
+<% end %>
