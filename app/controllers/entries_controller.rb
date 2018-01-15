@@ -7,7 +7,7 @@ class EntriesController < ApplicationController
     group_tournament = GroupTournament.find(params[:group_tournament_id])
     @entry = group_tournament.entries.build(entry_params)
     @entry.user = current_user
-    @entry.tournament.slots.each do |s|
+    @entry.tournament.slots.sort_by(&:id).each do |s|
       @entry.picks.build(slot: s)
     end
     if @entry.save

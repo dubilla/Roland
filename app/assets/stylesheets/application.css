@@ -13,3 +13,93 @@
  *= require_tree .
  *= require_self
  */
+
+article {
+  position: relative;
+  width: 2100px;
+}
+
+article section {
+  position: relative;
+  border: 1px solid black;
+  margin: 15px 0;
+  height: 70px;
+  width: 250px;
+}
+
+.round {
+  position: absolute;
+  top: 0;
+}
+
+.round2 {
+  left: 275px;
+}
+
+.round3 {
+  left: 550px;
+}
+
+.round4 {
+  left: 825px;
+}
+
+.round5 {
+  left: 1100px;
+}
+
+.round6 {
+  left: 1375px;
+}
+
+.round7 {
+  left: 1650px;
+}
+
+.round8 {
+  left: 1925px;
+}
+
+.pick {
+  position: absolute;
+  top: 50px;
+  left: 320px;
+  width: 250px;
+}
+
+.round2 section {
+  top: 65px;
+  margin: 0 0 102px;
+}
+
+.round3 section {
+  top: 155px;
+  margin: 0 0 276px;
+}
+
+.round4 section {
+  top: 470px;
+  margin: 0 0 623px;
+}
+
+.round5 section {
+  top: 692px;
+  margin: 0 0 1315px;
+}
+
+.round6 section {
+  top: 1317px;
+  margin: 0 0 2744px;
+}
+
+.round7 section {
+  top: 2725px;
+}
+
+.round8 section {
+  top: 2725px;
+}
+
+.edit-pick {
+  float: right;
+}

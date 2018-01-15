@@ -33,7 +33,7 @@ class PicksController < ApplicationController
   end
 
   def slots
-    @slots ||= root_slot.path.reverse[0..@pick.slot.depth]
+    @slots ||= root_slot.path.reverse[0..(6 - @pick.slot.depth)]
   end
 
   def root_slot

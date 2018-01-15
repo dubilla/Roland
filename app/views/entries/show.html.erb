@@ -1,24 +1,52 @@
 <h2><%= @entry.name %> Entry</h2>
 
 <h4>Bracket</h4>
-<% @entry.picks.sort_by(&:id).each_with_index do |p| %>
-  <section>
-    <% if p.slot.matchup && p.slot.matchup.opponents.length == 2 %>
-      <ul>
-        <% p.slot.matchup.opponents.each do |o| %>
-          <li>
-            <%= o.entrant.player_name %>
-          </li>
-        <% end %>
-      </ul>
+<article>
+  <div class="round round1 matchups">
+    <% @entry.picks.sort_by(&:id).each_with_index do |p| %>
+      <% if p.slot.depth == 6 %>
+          <section>
+            <ul>
+              <% p.slot.matchup.opponents.each do |o| %>
+                <li>
+                  <%= o.entrant.player_name %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+      <% end %>
     <% end %>
-    <div>
-      Pick <%= p.slot_name %> - <%= link_to "Make Pick", edit_pick_path(p) %>
-    </div>
-    <% if p.entrant %>
-      <div>
-        Pick: <%= p.entrant.player_name %>
+  </div>
+  <% offset = 0 %>
+  <% depth = nil %>
+  <% @entry.picks.sort_by(&:id).each_slice(2) do |p1, p2| %>
+    <% if depth != p1.slot.depth %>
       </div>
     <% end %>
-  </section>
-<% end %>
+    <% if depth != p1.slot.depth %>
+      <% depth = p1.slot.depth %>
+      <div class="round round<%= 8 - p1.slot.depth %>">
+    <% end %>
+      <section>
+        <ul>
+          <li>
+            <% if p1.entrant %>
+              <%= p1.entrant.player_name %>
+              <%= link_to "Edit Pick", edit_pick_path(p1), class: "edit-pick" %>
+            <% else %>
+              <%= link_to "Make Pick", edit_pick_path(p1) %>
+            <% end %>
+          </li>
+          <li>
+            <% if p2.present? %>
+              <% if p2.entrant %>
+                <%= p2.entrant.player_name %>
+                <%= link_to "Edit Pick", edit_pick_path(p2), class: "edit-pick" %>
+              <% else %>
+                <%= link_to "Make Pick", edit_pick_path(p2) %>
+              <% end %>
+            <% end %>
+          </li>
+      </section>
+  <% end %>
+</article>
