@@ -1,6 +1,8 @@
 <h2><%= @group.name %></h2>
 
-<%= link_to "Join Group", new_group_group_membership_path(@group) %>
+<% if !@group.group_memberships.map(&:user).include? current_user %>
+  <%= link_to "Join Group", new_group_group_membership_path(@group) %>
+<% end %>
 
 <div>
   <h3>Tournaments</h3>
