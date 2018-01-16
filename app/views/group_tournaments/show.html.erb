@@ -10,11 +10,17 @@
     <tr>
       <td>
         <%= entry.name %>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
       </td>
       <td>
         <% if entry.user == current_user %>
           <%= link_to "View", group_tournament_entry_path(entry.group_tournament, entry) %>
         <% end %>
+        &nbsp;
+        &nbsp;
       </td>
       <td>
         <% if entry.user == current_user %>
