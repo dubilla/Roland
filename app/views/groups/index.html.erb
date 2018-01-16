@@ -15,3 +15,9 @@
 <% if user_signed_in? && current_user.admin? %>
   <%= link_to 'Create a group', new_group_path %>
 <% end %>
+
+<p>
+<% if !user_signed_in? %>
+  <%= link_to('Login', new_user_session_path) %>
+<% end %>
+</p>
