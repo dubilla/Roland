@@ -32,18 +32,26 @@
           <li>
             <% if p1.entrant %>
               <%= p1.entrant.player_name %>
-              <%= link_to "Edit Pick", edit_pick_path(p1), class: "edit-pick" %>
+              <% if !@entry.tournament.locked? %>
+                <%= link_to "Edit Pick", edit_pick_path(p1), class: "edit-pick" %>
+              <% end %>
             <% else %>
-              <%= link_to "Make Pick", edit_pick_path(p1) %>
+              <% if !@entry.tournament.locked? %>
+                <%= link_to "Make Pick", edit_pick_path(p1) %>
+              <% end %>
             <% end %>
           </li>
           <li>
             <% if p2.present? %>
               <% if p2.entrant %>
                 <%= p2.entrant.player_name %>
-                <%= link_to "Edit Pick", edit_pick_path(p2), class: "edit-pick" %>
+                <% if !@entry.tournament.locked? %>
+                  <%= link_to "Edit Pick", edit_pick_path(p2), class: "edit-pick" %>
+                <% end %>
               <% else %>
-                <%= link_to "Make Pick", edit_pick_path(p2) %>
+                <% if !@entry.tournament.locked? %>
+                  <%= link_to "Make Pick", edit_pick_path(p2) %>
+                <% end %>
               <% end %>
             <% end %>
           </li>

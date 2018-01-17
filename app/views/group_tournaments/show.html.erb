@@ -16,7 +16,7 @@
         &nbsp;
       </td>
       <td>
-        <% if entry.user == current_user %>
+        <% if (entry.user == current_user) || entry.tournament.locked? %>
           <%= link_to "View", group_tournament_entry_path(entry.group_tournament, entry) %>
         <% end %>
         &nbsp;
