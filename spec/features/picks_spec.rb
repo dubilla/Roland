@@ -73,7 +73,7 @@ RSpec.feature "Picks", type: :feature do
   end
 
   def i_can_pick_a_game
-    find("div", text: "Pick Slot 5").click_link "Make Pick"
+    find("p", text: "Pick Slot 5").click_link "Make Pick"
     expect(page).to have_text "Pick for Slot 5"
   end
 

@@ -6,9 +6,12 @@
     <% @entry.picks.sort_by(&:id).each_with_index do |p| %>
       <% if p.slot.depth == 6 %>
           <section>
-            <ul>
+            <p class="slot-name">
+              <%= p.slot_name %>
+            </p>
+            <ul class="entrants">
               <% p.slot.matchup.opponents.each do |o| %>
-                <li>
+                <li class="entrant-name">
                   <%= o.entrant.player_name %>
                 </li>
               <% end %>
@@ -28,8 +31,11 @@
       <div class="round round<%= 8 - p1.slot.depth %>">
     <% end %>
       <section>
-        <ul>
-          <li>
+        <p class="slot-name">
+          <%= p1.slot&.parent&.name %>
+        </p>
+        <ul class="entrants">
+          <li class="entrant-name">
             <% if p1.entrant %>
               <%= p1.entrant.player_name %>
               <% if !@entry.tournament.locked? %>
@@ -41,7 +47,7 @@
               <% end %>
             <% end %>
           </li>
-          <li>
+          <li class="entrant-name">
             <% if p2.present? %>
               <% if p2.entrant %>
                 <%= p2.entrant.player_name %>
