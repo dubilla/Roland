@@ -3,21 +3,19 @@
 <h4>Bracket</h4>
 <article>
   <div class="round round1 matchups">
-    <% @entry.picks.sort_by(&:id).each_with_index do |p| %>
-      <% if p.slot.depth == 6 %>
-          <section>
-            <p class="slot-name">
-              <%= p.slot_name %>
-            </p>
-            <ul class="entrants">
-              <% p.slot.matchup.opponents.each do |o| %>
-                <li class="entrant-name">
-                  <%= o.entrant.player_name %>
-                </li>
-              <% end %>
-            </ul>
-          </section>
-      <% end %>
+    <% @entry.tournament.matchups.select{|m| m.slot.is_childless? }.each_with_index do |m| %>
+      <section>
+        <p class="slot-name">
+          <%= m.slot_name %>
+        </p>
+        <ul class="entrants">
+          <% m.opponents.each do |o| %>
+            <li class="entrant-name">
+              <%= o.entrant.player_name %>
+            </li>
+          <% end %>
+        </ul>
+      </section>
     <% end %>
   </div>
   <% offset = 0 %>
