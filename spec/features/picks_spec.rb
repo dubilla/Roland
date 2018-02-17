@@ -73,7 +73,9 @@ RSpec.feature "Picks", type: :feature do
   end
 
   def i_can_pick_a_game
-    find("p", text: "Pick Slot 5").click_link "Make Pick"
+    within "section", text: "Slot 7" do
+      click_link("Edit Pick", match: :first)
+    end
     expect(page).to have_text "Pick for Slot 5"
   end
 
@@ -88,14 +90,14 @@ RSpec.feature "Picks", type: :feature do
 
   def and_see_the_pick_on_the_entry_page
     expect(page).to have_text "My First Entry"
-    within "section", text: "Pick Slot 5" do
-      expect(page).to have_text "Pick: Clemson"
+    within "section", text: "Slot 5" do
+      expect(page).to have_text "Clemson"
     end
   end
 
   def and_i_see_the_preceding_picks
-    within "section", text: "Pick Slot 1" do
-      expect(page).to have_text "Pick: Clemson"
+    within "section", text: "Slot 1" do
+      expect(page).to have_text "Clemson"
     end
   end
 end

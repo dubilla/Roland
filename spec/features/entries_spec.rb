@@ -3,9 +3,17 @@ require "rails_helper"
 RSpec.feature "Entries", type: :feature do
   let(:user) { create :user, email: 'jason.day@golf.com' }
   let(:group) { create :group, name: 'Pool' }
-  let(:tournament) { create :tournament, name: 'Denver Open' }
+  let(:tournament) { create :tournament, name: 'Denver Open', locked: false }
   let!(:slot) { create :slot, tournament: tournament }
   let(:group_tournament) { create :group_tournament, group: group, tournament: tournament }
+  let!(:nadal_entrant) { create :entrant, player: nadal }
+  let!(:federer_entrant) { create :entrant, player: federer }
+  let!(:del_potro_entrant) { create :entrant, player: del_potro }
+  let!(:murray_entrant) { create :entrant, player: murray }
+  let!(:nadal) { create :player, first_name: "Rafael", last_name: "Nadal" }
+  let!(:federer) { create :player, first_name: "Rodger", last_name: "Federer" }
+  let!(:del_potro) { create :player, first_name: "Juan", last_name: "Del Potro" }
+  let!(:murray) { create :player, first_name: "Andy", last_name: "Murray" }
 
   context "with no existing entries" do
     scenario "creating and deleting entries" do
@@ -48,12 +56,14 @@ RSpec.feature "Entries", type: :feature do
     end
   end
 
-  context "with an existing entry" do
+  context "with an existing, unlocked entry" do
     let!(:entry) { create :entry, name: "My Bracket", user: user, group_tournament: group_tournament }
-    let!(:slot1) { create :slot, tournament: tournament }
-    let!(:slot2) { create :slot, tournament: tournament }
-    let!(:pick_for_slot1) { create :pick, entry: entry, slot: slot1 }
-    let!(:pick_for_slot2) { create :pick, entry: entry, slot: slot2 }
+    let!(:slot1) { create :slot, tournament: tournament, name: "Matchup 1" }
+    let!(:slot2) { create :slot, tournament: tournament, name: "Matchup 2" }
+    let!(:matchup1) { create :matchup, slot: slot1 }
+    let!(:matchup2) { create :matchup, slot: slot2 }
+    let!(:pick_for_slot1) { create :pick, entry: entry, slot: slot1, entrant: nadal_entrant }
+    let!(:pick_for_slot2) { create :pick, entry: entry, slot: slot2, entrant: federer_entrant }
 
     scenario "updating an entry with picks" do
       as_a_user_i_login user
@@ -73,8 +83,56 @@ RSpec.feature "Entries", type: :feature do
 
     def i_see_my_bracket
       expect(page).to have_text "My Bracket Entry"
-      expect(page).to have_text "Make Pick", count: 2
+      expect(page).to have_text "Edit Pick", count: 2
     end
+  end
+
+  context "with locked entry" do
+    let(:tournament) { create :tournament, name: 'Denver Open', locked: true }
+    let!(:entry) { create :entry, name: "My Bracket", user: user, group_tournament: group_tournament }
+    let!(:slot1) { create :slot, tournament: tournament, name: "Matchup 1" }
+    let!(:slot2) { create :slot, tournament: tournament, name: "Matchup 2" }
+    let!(:slot3) { create :slot, tournament: tournament, name: "Matchup 3" }
+    let!(:matchup1) { create :matchup, slot: slot1 }
+    let!(:matchup2) { create :matchup, slot: slot2 }
+    let!(:matchup1_opponent1) { create :opponent, matchup: matchup1, entrant: nadal_entrant, winner: true }
+    let!(:matchup1_opponent2) { create :opponent, matchup: matchup1, entrant: federer_entrant, winner: false }
+    let!(:matchup2_opponent1) { create :opponent, matchup: matchup2, entrant: del_potro_entrant, winner: false }
+    let!(:matchup2_opponent2) { create :opponent, matchup: matchup2, entrant: murray_entrant, winner: true }
+    let!(:pick_for_slot1) { create :pick, entry: entry, slot: slot1, entrant: nadal_entrant }
+    let!(:pick_for_slot2) { create :pick, entry: entry, slot: slot2, entrant: federer_entrant }
+    let!(:pick_for_slot3) { create :pick, entry: entry, slot: slot3 }
+
+    scenario "updating an entry with picks" do
+      as_a_user_i_login user
+      given_i_have_an_entry
+      and_i_visit_a_group_tournament_page
+      and_i_click_on_the_link_to_my_entry
+      i_see_my_bracket
+      and_i_see_winners
+      and_i_see_losers
+    end
+
+    def i_see_my_bracket
+      expect(page).to have_text "My Bracket Entry"
+    end
+
+    def and_i_see_winners
+      within "section", text: "Matchup 3" do
+        expect(page).to have_text "W"
+      end
+    end
+
+    def and_i_see_losers
+    end
+  end
+
+  def given_i_have_an_entry
+    #no-op
+  end
+
+  def and_i_click_on_the_link_to_my_entry
+    find("tr", text: entry.name).click_link("View")
   end
 
   def as_a_user_i_login user

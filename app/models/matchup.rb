@@ -4,4 +4,8 @@ class Matchup < ActiveRecord::Base
   has_many :entrants, through: :opponents
 
   delegate :name, to: :slot, prefix: true
+
+  def winner
+    opponents.where(winner: true).first
+  end
 end
