@@ -1,0 +1,10 @@
+<% if pick.entrant %>
+  <span><%= pick.entrant.player_name %></span>
+<% end %>
+<% if pick.slot.matchup&.winner %>
+  <% if pick.slot.matchup.winner.entrant == pick.entrant %>
+    <span> - W</span>
+  <% else %>
+    <span> - X</span>
+  <% end %>
+<% end %>

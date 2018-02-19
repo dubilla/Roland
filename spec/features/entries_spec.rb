@@ -101,8 +101,7 @@ RSpec.feature "Entries", type: :feature do
     let!(:matchup2_opponent1) { create :opponent, matchup: matchup2, entrant: del_potro_entrant, winner: false }
     let!(:matchup2_opponent2) { create :opponent, matchup: matchup2, entrant: murray_entrant, winner: true }
     let!(:pick_for_slot1) { create :pick, entry: entry, slot: slot1, entrant: nadal_entrant }
-    let!(:pick_for_slot2) { create :pick, entry: entry, slot: slot2, entrant: federer_entrant }
-    let!(:pick_for_slot3) { create :pick, entry: entry, slot: slot3 }
+    let!(:pick_for_slot2) { create :pick, entry: entry, slot: slot2, entrant: del_potro_entrant }
 
     scenario "updating an entry with picks" do
       as_a_user_i_login user
@@ -127,6 +126,11 @@ RSpec.feature "Entries", type: :feature do
     end
 
     def and_i_see_losers
+      within "section", text: "Round 2 - Game 1" do
+        within ".entrant-name", text: "Juan Del Potro" do
+          expect(page).to have_text "X"
+        end
+      end
     end
   end
 
