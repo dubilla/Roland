@@ -90,9 +90,10 @@ RSpec.feature "Entries", type: :feature do
   context "with locked entry" do
     let(:tournament) { create :tournament, name: 'Denver Open', locked: true }
     let!(:entry) { create :entry, name: "My Bracket", user: user, group_tournament: group_tournament }
-    let!(:slot1) { create :slot, tournament: tournament, name: "Matchup 1" }
-    let!(:slot2) { create :slot, tournament: tournament, name: "Matchup 2" }
-    let!(:slot3) { create :slot, tournament: tournament, name: "Matchup 3" }
+    let!(:slot1) { create :slot, tournament: tournament, name: "Round 1 - Game 1", parent: slot5 }
+    let!(:slot2) { create :slot, tournament: tournament, name: "Round 1 - Game 2", parent: slot5 }
+    let!(:slot3) { create :slot, tournament: tournament, name: "Round 1 - Game 3" }
+    let!(:slot5) { create :slot, tournament: tournament, name: "Round 2 - Game 1" }
     let!(:matchup1) { create :matchup, slot: slot1 }
     let!(:matchup2) { create :matchup, slot: slot2 }
     let!(:matchup1_opponent1) { create :opponent, matchup: matchup1, entrant: nadal_entrant, winner: true }
@@ -118,8 +119,10 @@ RSpec.feature "Entries", type: :feature do
     end
 
     def and_i_see_winners
-      within "section", text: "Matchup 3" do
-        expect(page).to have_text "W"
+      within "section", text: "Round 2 - Game 1" do
+        within ".entrant-name", text: "Rafael Nadal" do
+          expect(page).to have_text "W"
+        end
       end
     end
 
