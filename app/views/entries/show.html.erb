@@ -34,26 +34,15 @@
         </p>
         <ul class="entrants">
           <li class="entrant-name">
-            <% if p1.entrant %>
-              <span><%= p1.entrant.player_name %></span>
-            <% end %>
-            <% if @entry.tournament.locked? %>
-              <% if p1.slot.matchup&.winner&.entrant == p1.entrant %>
-                <span> - W</span>
-              <% end %>
-            <% else %>
+            <%= render partial: "pick", locals: {pick: p1} %>
+            <% if !@entry.tournament.locked? %>
               <%= link_to "Edit Pick", edit_pick_path(p1), class: "edit-pick" %>
             <% end %>
           </li>
           <li class="entrant-name">
             <% if p2.present? %>
-              <% if p2.entrant %> <span><%= p2.entrant.player_name %></span>
-              <% end %>
-              <% if @entry.tournament.locked? %>
-                <% if p2.slot.matchup&.winner&.entrant == p2.entrant %>
-                  <span> - W</span>
-                <% end %>
-              <% else %>
+              <%= render partial: "pick", locals: {pick: p2} %>
+              <% if !@entry.tournament.locked? %>
                 <%= link_to "Edit Pick", edit_pick_path(p2), class: "edit-pick" %>
               <% end %>
             <% end %>
