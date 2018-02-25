@@ -132,6 +132,12 @@ RSpec.feature "Entries", type: :feature do
         end
       end
     end
+
+    def and_i_see_a_score
+      within "h3" do
+        expect(page).to have_text "Score: 10"
+      end
+    end
   end
 
   def given_i_have_an_entry
