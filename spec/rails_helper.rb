@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'capybara/poltergeist'
 require 'support/factory_girl'
 require 'capybara-screenshot/rspec'
+require 'support/tasks'
 
 Capybara.javascript_driver = :poltergeist
 # Requires supporting ruby files with custom matchers and macros, etc, in
