@@ -7,6 +7,6 @@ class Entry < ActiveRecord::Base
   delegate :matchups, to: :tournament
 
   def score
-    picks.inject(0){|sum, p| sum + (p.winner ? 1 : 0) * 10 * (2 ** (tournament.slot_depth - p.slot.depth)) }
+    EntryScore.new(picks, tournament.slot_depth)
   end
 end
