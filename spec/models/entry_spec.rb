@@ -13,7 +13,7 @@ RSpec.describe Entry, type: :model do
       let!(:first_round_winner_pick) { create :pick, winner: true, entry: entry, slot: first_round_slot1 }
       let!(:first_round_loser_pick) { create :pick, winner: false, entry: entry, slot: first_round_slot2 }
       it 'sums up correctly' do
-        expect(entry.score).to eq 10
+        expect(entry.score.points).to eq 10
       end
     end
     context 'there is three levels of depth' do
@@ -28,7 +28,7 @@ RSpec.describe Entry, type: :model do
       let!(:third_round_winner_pick1) { create :pick, winner: true, entry: entry, slot: third_round_slot1 }
       let!(:third_round_winner_pick2) { create :pick, winner: true, entry: entry, slot: third_round_slot2 }
       it 'sums up correctly' do
-        expect(entry.score).to eq 110
+        expect(entry.score.points).to eq 110
       end
     end
   end
