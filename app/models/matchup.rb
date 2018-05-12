@@ -3,6 +3,8 @@ class Matchup < ActiveRecord::Base
   has_many :opponents, inverse_of: :matchup
   has_many :entrants, through: :opponents
 
+  accepts_nested_attributes_for :opponents
+
   delegate :name, to: :slot, prefix: true
 
   def winner
