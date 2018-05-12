@@ -1,0 +1,9 @@
+<h2><%= @tournament.name %></h2>
+
+<ul>
+  <% @tournament.matchups.each do |m| %>
+    <li>
+      <%= link_to m.opponents.map{|o| o.entrant.player_name }.join(' v '), matchup_path(m)  %>
+    </li>
+  <% end %>
+</ul>
