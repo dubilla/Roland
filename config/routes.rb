@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :entrants, only: [:new, :create, :index]
   resources :opponents, only: [:new, :create, :index]
   resources :tournaments, only: [:index, :show]
-  resources :matchups, only: [:show]
+  resources :matchups, only: [:edit, :update]
 
   # Example resource route with options:
   #   resources :products do
