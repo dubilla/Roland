@@ -3,7 +3,7 @@
 <ul>
   <% @tournaments.each do |t| %>
   <li>
-    <%= link_to tournament_path(t), t.name %>
+    <%= link_to t.name,  tournament_path(t) %>
   </li>
   <% end %>
 </ul>
