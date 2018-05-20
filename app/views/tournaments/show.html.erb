@@ -4,6 +4,10 @@
   <% @tournament.matchups.each do |m| %>
     <li>
       <%= link_to m.opponents.map{|o| o.entrant.player_name }.join(' v '), edit_matchup_path(m)  %>
+      <br />
+      <% if m.winner.present? %>
+        Winner: <%= m.winner.player_name %>
+      <% end %>
     </li>
   <% end %>
 </ul>

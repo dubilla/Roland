@@ -6,6 +6,7 @@ class Matchup < ActiveRecord::Base
   accepts_nested_attributes_for :opponents
 
   delegate :name, to: :slot, prefix: true
+  delegate :tournament, to: :slot
 
   def winner
     opponents.where(winner: true).first
