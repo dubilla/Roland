@@ -18,8 +18,8 @@ RSpec.feature "Matchups", type: :feature do
       and_i_click_on_a_tournament_link
       i_see_a_list_of_matchups
       and_i_click_on_a_matchup
-      #i_can_score_it
-      #and_i_see_it_scored
+      i_can_score_it
+      and_i_see_it_scored
     end
 
     def as_a_user_i_login user
@@ -40,6 +40,15 @@ RSpec.feature "Matchups", type: :feature do
 
     def and_i_click_on_a_matchup
       click_link "Steffi Graff v Venus Williams"
+    end
+
+    def i_can_score_it
+      check "Venus Williams"
+      click_button "Update Matchup"
+    end
+
+    def and_i_see_it_scored
+      expect(page).to have_text "Winner: Venus Williams"
     end
   end
 end

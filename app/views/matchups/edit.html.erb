@@ -1,12 +1,15 @@
 <h2><%= @matchup.opponents.map{|o| o.entrant.player_name }.join(' v ') %></h2>
 
-<%= form_for @matchup do |m| %>
+<%= form_for @matchup do |f| %>
   <ul>
-    <%= m.fields_for :opponents do |opponents_form| %>
+    <%= f.fields_for :opponents do |opponents_form| %>
       <li>
-        <%= opponents_form.object.entrant.player_name %>
-        <%= opponents_form.check_box :winner %>
+        <label>
+          <%= opponents_form.object.entrant.player_name %>
+          <%= opponents_form.check_box :winner %>
+        </label>
       </li>
     <% end %>
   </ul>
+  <%= f.submit %>
 <% end %>
