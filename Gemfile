@@ -35,6 +35,7 @@ gem 'devise'
 gem 'ancestry'
 gem 'httparty'
 gem 'rails_12factor'
+gem 'trestle'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
