@@ -7,4 +7,6 @@ class Entrant < ActiveRecord::Base
 
   delegate :name, to: :player, prefix: true
   delegate :name, to: :tournament, prefix: true
+
+  alias_attribute :name, :player_name
 end
