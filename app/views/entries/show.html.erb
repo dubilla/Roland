@@ -4,7 +4,7 @@
 <h4>Bracket</h4>
 <article>
   <div class="round round1 matchups">
-    <% @entry.tournament.matchups.each_with_index do |m| %>
+    <% @entry.tournament.matchups.each do |m| %>
       <section>
         <p class="slot-name">
           <%= m.slot_name %>
